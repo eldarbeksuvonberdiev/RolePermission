@@ -9,6 +9,6 @@ class Permission extends Model
 
     protected $fillable = [
         'name',
-        'uri',
+        'route_name',
     ];
 }
