@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermission
@@ -15,6 +17,13 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        $user = Auth::user();
+        $routeName = $request->route()->getName();
+
+        if ($user && $user->hasPermission($routeName))
+            return $next($request);
+
+
+        abort(403);
     }
 }

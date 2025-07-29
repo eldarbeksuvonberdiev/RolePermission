@@ -14,12 +14,15 @@
                     </div>
                     <div class="card-body p-sm-5">
                         <h2 class="fs-20 fw-bolder mb-4 text-center">Login</h2>
-                        <form action="#" class="w-100 mt-4 pt-2">
+                        <form action="{{ route('authenticate') }}" class="w-100 mt-4 pt-2" method="POST">
+                            @csrf
+
                             <div class="mb-4">
-                                <input type="email" class="form-control" placeholder="Email or Username" required>
+                                <input type="email" class="form-control" placeholder="Email or Username" name="email" required>
                             </div>
+
                             <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Password" required>
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
                             </div>
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>

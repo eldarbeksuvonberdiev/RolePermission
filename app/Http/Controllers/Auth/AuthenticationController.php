@@ -19,8 +19,8 @@ class AuthenticationController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+            return redirect()->route('admin.index');
         } else {
             return redirect()->route('login');
         }
