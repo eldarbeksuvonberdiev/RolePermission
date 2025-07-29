@@ -50,20 +50,19 @@ class User extends Authenticatable
 
     public  function roles()
     {
-        return $this->belongsTo(Role::class, 'role_users');
+        return $this->belongsToMany(Role::class, 'role_users');
     }
 
     public function hasPermission($routeName)
     {
-        dd($this->roles()->permissions);
-//        foreach ($this->roles() as $role) {
-//            foreach ($role->permissions as $permission) {
-//                if ($permission->name === $routeName) {
-//                    return true;
-//                }
-//            }
-//        }
+        foreach ($this->roles as $role) {
+            foreach ($role->permissions as $permission) {
+                if ($permission->route_name === $routeName) {
+                    return true;
+                }
+            }
+        }
 
-//        return false;
+        return false;
     }
 }

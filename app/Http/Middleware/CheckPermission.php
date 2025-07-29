@@ -19,7 +19,6 @@ class CheckPermission
     {
         $user = Auth::user();
         $routeName = $request->route()->getName();
-
         if ($user && $user->hasPermission($routeName))
             return $next($request);
 
