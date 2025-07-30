@@ -18,10 +18,11 @@ class CheckPermission
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
+
         $routeName = $request->route()->getName();
+
         if ($user && $user->hasPermission($routeName))
             return $next($request);
-
 
         abort(403);
     }

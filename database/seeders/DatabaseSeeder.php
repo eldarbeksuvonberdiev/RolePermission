@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\RolePermission\Permission;
+use App\Models\RolePermission\Role;
 use App\Models\User;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,10 +24,18 @@ class DatabaseSeeder extends Seeder
 //            'email' => 'test@example.com',
 //        ]);
 
-        User::create([
+        $user = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin@admin.com'),
         ]);
+
+        $role = Role::create(['name' => 'admin']);
+
+        $user->roles()->attach($role->id);
+
+        $permissions = Permission::all();
+
+        $role->permissions()->attach($permissions);
     }
 }
