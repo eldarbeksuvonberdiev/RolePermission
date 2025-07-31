@@ -21,6 +21,8 @@
     <!--! BEGIN: Vendors CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/vendors.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/daterangepicker.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/select2-theme.min.css') }}">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}"/>
@@ -55,8 +57,11 @@
 <!--! [Start] Main Content !-->
 <main class="nxl-container">
     <div class="nxl-content">
+
         @yield('content', 'Something here')
+
         <x-admin.footer></x-admin.footer>
+
     </div>
 </main>
 <!--! [End] Main Content !-->
@@ -70,6 +75,8 @@
 <script src="{{ asset('assets/vendors/js/daterangepicker.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/js/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/vendors/js/circle-progress.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/js/select2-active.min.js') }}"></script>
 <!--! END: Vendors JS !-->
 <!--! BEGIN: Apps Init  !-->
 <script src="{{ asset('assets/js/common-init.min.js') }}"></script>

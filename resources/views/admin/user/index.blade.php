@@ -10,7 +10,7 @@
                 <h5 class="m-b-10">RolePermission</h5>
             </div>
             <ul class="breadcrumb">
-                <li class="breadcrumb-item">Roles</li>
+                <li class="breadcrumb-item">Users</li>
             </ul>
         </div>
     </div>
@@ -20,13 +20,10 @@
             <div class="col-lg-12">
                 <div class="card stretch stretch-full">
                     <div class="card-header">
-                        <h5 class="card-title">Recent Orders</h5>
+                        <h5 class="card-title">Users</h5>
                         <div class="card-header-action">
+                            <a class="btn btn-primary rounded-pill" href="{{ route('user.create') }}">Create</a>
                             <div class="card-header-btn">
-                                <div data-bs-toggle="tooltip" title="Refresh">
-                                    <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
-                                       data-bs-toggle="refresh"> </a>
-                                </div>
                                 <div data-bs-toggle="tooltip" title="Maximize/Minimize">
                                     <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
                                        data-bs-toggle="expand"> </a>
@@ -40,7 +37,9 @@
                                 <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Country</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Roles</th>
                                     <th class="text-end">Actions</th>
                                 </tr>
                                 </thead>
@@ -51,12 +50,21 @@
                                             <div class="hstack gap-3">{{ $loop->iteration }}</div>
                                         </td>
                                         <td class="text-dark fw-bold">{{ $user->name }}</td>
+                                        <td class="text-dark fw-bold">{{ $user->email }}</td>
+                                        <td class="text-dark fw-bold">
+                                            @foreach($user->roles as $role)
+                                                <span
+                                                    class="badge bg-soft-primary text-primary ">{{ $role->name }}</span>
+                                            @endforeach
+                                        </td>
                                         <td class="text-end">
                                             <div class="hstack gap-2 justify-content-end">
-                                                <a href="#" class="avatar-text avatar-md">
+                                                <a href="{{ route('user.edit', $user->id) }}"
+                                                   class="avatar-text avatar-md">
                                                     <i class="feather-edit"></i>
                                                 </a>
-                                                <a href="#" class="avatar-text avatar-md">
+                                                <a href="{{ route('user.destroy', $user->id) }}"
+                                                   class="avatar-text avatar-md">
                                                     <i class="feather-trash-2"></i>
                                                 </a>
                                             </div>
