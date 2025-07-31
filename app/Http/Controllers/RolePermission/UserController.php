@@ -72,8 +72,8 @@ class UserController extends Controller
 
         $user->update($data);
 
-        if ($request->roles)
-            $user->roles()->sync($request->roles);
+
+        $user->roles()->sync($request->roles);
 
         return redirect()->route('user.index');
     }

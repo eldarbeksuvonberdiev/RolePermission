@@ -43,7 +43,6 @@
                             </div>
                         </div>
                         <div class="card-body p-4">
-                            <h5>Role Name</h5>
                             <div class="form-group pb-3">
                                 <label for="name">Name:</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="superadmin"
