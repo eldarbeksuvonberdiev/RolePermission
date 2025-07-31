@@ -31,7 +31,7 @@ class RefreshPermissions extends Command
 
         foreach ($routes as $route) {
 
-            if ($route->uri() === 'up' || str_starts_with($route->uri(), 'storage/')) {
+            if (in_array($route->uri(), ['up', 'login', 'authenticate', 'logout']) || str_starts_with($route->uri(), 'storage/')) {
                 continue;
             }
 
@@ -46,5 +46,6 @@ class RefreshPermissions extends Command
 
             }
         }
+        $this->info('Permissions have been created successfully.');
     }
 }

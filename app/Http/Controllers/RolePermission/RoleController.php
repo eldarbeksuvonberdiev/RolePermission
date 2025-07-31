@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\RolePermission;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RolePermission\Role\RoleStoreRequest;
+use App\Http\Requests\RolePermission\Role\RoleUpdateRequest;
+use App\Models\RolePermission\Permission;
 use App\Models\RolePermission\Role;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        dd($roles);
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -22,20 +25,21 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::orderBy('name')->get();
+
+        return view('admin.role.create', compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $role = Role::create(['name' => $request->name]);
 
-        Role::create(['name' => $request->name]);
+        $role->permissions()->attach($request->permissions);
 
+        return redirect()->route('role.index');
     }
 
 
@@ -44,15 +48,23 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all();
+
+        $ids = $role->permissions->pluck('id')->toArray();
+
+        return view('admin.role.edit', compact('role', 'permissions', 'ids'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(RoleUpdateRequest $request, Role $role)
     {
-        //
+        $role->update(['name' => $request->name]);
+
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('role.index');
     }
 
     /**
