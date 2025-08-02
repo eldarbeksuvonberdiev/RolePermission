@@ -8,6 +8,7 @@ use App\Http\Requests\RolePermission\Role\RoleUpdateRequest;
 use App\Models\RolePermission\Permission;
 use App\Models\RolePermission\Role;
 use Illuminate\Http\Request;
+use Str;
 
 class RoleController extends Controller
 {

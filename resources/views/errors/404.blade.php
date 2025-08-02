@@ -46,9 +46,10 @@
                 <div class="card-body p-sm-5 text-center">
                     <h2 class="fw-bolder mb-4" style="font-size: 120px">4<span class="text-danger">0</span>4</h2>
                     <h4 class="fw-bold mb-2">Page not found</h4>
-                    <p class="fs-12 fw-medium text-muted">Sorry, the page you are looking for can't be found. Please check the URL or try to a different page on our site.</p>
+                    <p class="fs-12 fw-medium text-muted">Sorry, the page you are looking for can't be found. Please
+                        check the URL or try to a different page on our site.</p>
                     <div class="mt-5">
-                        <a href="{{ redirect()->back() }}" class="btn btn-light-brand w-100">Back</a>
+                        <a href="{{ route('dashboard') }}" class="btn btn-light-brand w-100">Dashboard</a>
                     </div>
                 </div>
             </div>
